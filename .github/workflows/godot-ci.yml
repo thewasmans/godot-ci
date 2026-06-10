@@ -13,9 +13,19 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       godot_version: ${{ steps.extract_version.outputs.godot_version }}
+      build_name: ${{ steps.name.outputs.build_name }}
     steps:
       - name : Checkout
         uses: actions/checkout@v4
+        
+      - name: Compute short SHA
+        run: echo "SHA_SHORT=${GITHUB_SHA::7}" >> $GITHUB_ENV
+      - name: Build name
+        id: name
+        run: |
+          BUILD_NAME="${{ env.EXPORT_NAME }}-web-${SHA_SHORT}"
+          echo "build_name=$BUILD_NAME" >> $GITHUB_OUTPUT
+        
       - name: Extracting Godot version
         id: extract_version
         run: |
@@ -52,7 +62,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: web
+          name: ${{ needs.version.outputs.build_name }}
           path: build/web
       - name: Install Butler (Official Itch.io CLI) 🎩
         run: |
@@ -65,4 +75,4 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
         run: |
-          butler push build/web OrbitOwlGames/ci-test:html5
+          butler push build/web OrbitOwlGames/develop:html5
