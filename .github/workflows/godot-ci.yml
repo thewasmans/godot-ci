@@ -38,10 +38,9 @@ jobs:
       - name: Install Butler (Official Itch.io CLI) 🎩
         run: |
           wget -O butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
-          mkdir -p /usr/local/bin
-          unzip -j butler.zip butler -d /usr/local/bin
-          chmod +x /usr/local/bin/butler
-          butler status
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
 
       - name: Push to Itch.io via Butler 🚀
         env:
