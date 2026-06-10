@@ -38,7 +38,7 @@ jobs:
 
       # --- ÉTAPE ITCH.IO ---
       - name: Deploy to Itch.io 🎲
-        uses: dulvui/itchio-butler-upload@v1.1.0
+        uses: dulvui/itchio-butler-upload@main
         with:
           api-key:: ${{ secrets.ITCHIO_API_KEY }}
           
