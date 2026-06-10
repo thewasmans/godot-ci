@@ -38,11 +38,11 @@ jobs:
 
       # --- ÉTAPE ITCH.IO ---
       - name: Deploy to Itch.io 🎲
-        uses: josephbmanley/itchapp-action@v1
+        uses: dulvui/itchio-butler-upload@v1.1.0
         with:
-          api1: ${{ secrets.ITCHIO_API_KEY }}
+          api-key:: ${{ secrets.ITCHIO_API_KEY }}
           
-          build_dir: build/web
+          working-directory: build/web
           
           user: OrbitOwlGames
           
