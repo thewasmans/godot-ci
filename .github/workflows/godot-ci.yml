@@ -29,7 +29,7 @@ jobs:
     env:
       GODOT_VERSION: ${{ needs.version.outputs.godot_version }}
     container:
-      image: barichello/godot-ci:$GODOT_VERSION
+      image: barichello/godot-ci:${GODOT_VERSION}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
