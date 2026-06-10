@@ -26,10 +26,10 @@ jobs:
     name: Web Export
     runs-on: ubuntu-24.04
     needs: version
-    env:
-      GODOT_VERSION: ${{ needs.version.outputs.godot_version }}
     container:
       image: barichello/godot-ci:${{ needs.version.outputs.godot_version }}
+    env:
+      GODOT_VERSION: ${{ needs.version.outputs.godot_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
